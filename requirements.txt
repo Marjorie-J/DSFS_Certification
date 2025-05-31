@@ -1,0 +1,7 @@
+boto3
+numpy
+pandas
+plotly
+scikit-learn
+scrapy
+sqlalchemy
