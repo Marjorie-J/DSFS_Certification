@@ -1,0 +1,12 @@
+fastapi>=0.100.0 
+uvicorn[standard]
+pydantic<2.0 
+typing 
+pandas 
+gunicorn 
+openpyxl 
+mlflow 
+boto3 
+scikit-learn
+python-multipart
+psutil==7.0.0
