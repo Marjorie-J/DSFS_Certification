@@ -30,15 +30,24 @@ Bloc 6 : Direction de projets de gestion de données
 ## Installation
 
 1. Cloner le repository
-```git clone https://github.com/Marjorie-J/DSFS_Certification.git
-cd DSFS_Certification```
+
+```bash
+git clone https://github.com/Marjorie-J/DSFS_Certification.git
+cd DSFS_Certification
+```
 
 2. Créer un environnement
-```python -m venv dsfs_env
-source dsfs_env/bin/activate```
+
+```bash
+python -m venv dsfs_env
+source dsfs_env/bin/activate
+```
 
 3. Installer les dépendances
-```pip install -r requirements.txt```
+
+```bash
+pip install -r requirements.txt
+```
 
 
 ## Précisions
