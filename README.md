@@ -53,10 +53,12 @@ pip install -r requirements.txt
 ## Précisions
 
 Bloc 2 Steam : Projet réalisé sur Databricks avec PySpark
+
 Bloc 4 AT&T : Projet réalisé sur Google Colab / Lightning AI afin d'entraîner des modèles de deep learning
 
 
 ## Structure du Repository
+
 .
 ├── projet-1-nom-du-projet/
 │   ├── README.md
