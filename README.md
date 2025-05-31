@@ -59,6 +59,7 @@ Bloc 4 AT&T : Projet réalisé sur Google Colab / Lightning AI afin d'entraîner
 
 ## Structure du Repository
 
+```
 .
 ├── projet-1-nom-du-projet/
 │   ├── README.md
@@ -68,3 +69,4 @@ Bloc 4 AT&T : Projet réalisé sur Google Colab / Lightning AI afin d'entraîner
 │   ├── README.md
 │   └── ...
 └── README.md  <-- (ce fichier)
+```
