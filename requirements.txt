@@ -1,7 +1,10 @@
 boto3
+ipykernel
+nbformat
 numpy
 pandas
 plotly
+psycopg2-binary
 scikit-learn
-scrapy
-sqlalchemy
+scrapy==2.12.0
+sqlalchemy==2.0.0
