@@ -1,7 +1,5 @@
 # Plan your trip with Kayak
 
-![Kayak](https://seekvectorlogo.com/wp-content/uploads/2018/01/kayak-vector-logo.png)
-
 
 ## Company's description 📇
 
