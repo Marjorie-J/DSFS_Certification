@@ -61,12 +61,43 @@ Bloc 4 AT&T : Projet réalisé sur Google Colab / Lightning AI afin d'entraîner
 
 ```
 .
-├── projet-1-nom-du-projet/
-│   ├── README.md
-│   ├── data/
-│   └── notebooks/
-├── projet-2-nom-du-projet/
-│   ├── README.md
-│   └── ...
-└── README.md  <-- (ce fichier)
-```
+├── Bloc_1_Kayak/
+│   ├── datas/
+│   ├── maps/
+│   ├── screenshots/
+│   ├── src/
+│   └── README.md
+├── Bloc_2_Speed_Dating/
+│   ├── datas/
+│   ├── src/
+│   └── README.md
+├── Bloc_2_Steam/
+│   ├── src/
+│   └── README.md
+├── Bloc_3_Conversion_Rate_Challenge/
+│   ├── datas/
+│   ├── src/
+│   └── README.md
+├── Bloc_3_The_North_Face/
+│   ├── datas/
+│   ├── src/
+│   └── README.md
+├── Bloc_3_Walmart/
+│   ├── datas/
+│   ├── src/
+│   └── README.md
+├── Bloc_4_AT&T/
+│   ├── datas/
+│   ├── src/
+│   └── README.md
+├── Bloc_5_GetAround/
+│   ├── getaround-api/
+│   ├── getaround-dashboard/
+│   ├── getaround-mlflow/
+│   ├── getaround-train-model/
+│   └── README.md
+├── Bloc_6_FinalProject/
+│   ├── ...
+│   └── README.md
+├── README.md
+└── requirements.txt
