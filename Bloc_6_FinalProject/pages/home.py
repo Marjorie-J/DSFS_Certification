@@ -1,10 +1,8 @@
 import streamlit as st
 
-st.set_page_config(page_title="Anime Recommendation Engine 🏯", layout="wide")
+from utils.common import load_animes, load_profiles, load_reviews, load_synopsis_embedding,  init_model_MiniLM
 
 st.title("Anime Recommendation Engine 🏯")
-
-DATA_URL = ("../data/animes_clean.csv")
 
 st.markdown("""
 ## Welcome to the Anime Recommendation System!
