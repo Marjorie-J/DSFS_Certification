@@ -16,10 +16,10 @@ st.subheader("Analyse des cas problématiques : La voiture de la location préc�
 
 # Chevauchement potentiel
 fig = px.histogram(data_getaround, x="overlap", color="problem", color_discrete_map={True: "red"},
-                   labels={'overlap': 'Chevauchement (min)'},
+                   labels={"overlap": "Chevauchement (min)"},
                    title="Chevauchement entre deux locations. Plus le chevauchement est négatif, plus il est sévère.",
                    color_discrete_sequence=px.colors.qualitative.Bold)
-fig.update_layout(yaxis_title=None, yaxis=dict(tickformat='d'), showlegend=False)
+fig.update_layout(yaxis_title=None, yaxis=dict(tickformat="d"), showlegend=False)
 st.plotly_chart(fig, use_container_width=True)
 
 
@@ -31,7 +31,7 @@ st.markdown(f"""⚠️ Les cas problématiques représentent {percent_problem:.2
 
 
 fig = px.box(data_getaround, x="checkin_type", y="overlap", color="checkin_type",
-    labels={'overlap': 'Chevauchement (min)', 'checkin_type': 'Type de check-in'},
+    labels={"overlap": "Chevauchement (min)", "checkin_type": "Type de check-in"},
     title="Chevauchement par type de check-in", 
     color_discrete_sequence=px.colors.qualitative.Pastel
 )

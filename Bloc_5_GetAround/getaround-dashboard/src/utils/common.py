@@ -29,7 +29,7 @@ def load_data():
     # Nous créons une colonne overlap qui représente le chevauchement potentiel entre deux locations : time_delta - delay
     # Plus overlap est négatif, plus le chevauchement est sévère.
     # Plus il est positif, plus il y a de marge de sécurité.
-    data["overlap"] = data['time_delta_with_previous_rental_in_minutes'] - data["previous_delay_at_checkout_in_minutes"]
+    data["overlap"] = data["time_delta_with_previous_rental_in_minutes"] - data["previous_delay_at_checkout_in_minutes"]
 
     # Problèmes
     # problem = True	= La location précédente a empiété sur celle-ci (chevauchement).
@@ -57,7 +57,7 @@ def plot_checkin_thresholds(data, thresholds, column, y_label, title, percentage
             total_count = total_count / data.shape[0] * 100
         total_values.append(total_count)
 
-    fig.add_trace(go.Scatter(x=thresholds, y=total_values, mode="lines+markers", name="Total", hovertemplate='Seuil: %{x}<br>Valeur: %{y:.2f}'))
+    fig.add_trace(go.Scatter(x=thresholds, y=total_values, mode="lines+markers", name="Total", hovertemplate="Seuil: %{x}<br>Valeur: %{y:.2f}"))
 
     # Courbes par type de checkin
     for checkin_type in data["checkin_type"].unique():
@@ -76,7 +76,7 @@ def plot_checkin_thresholds(data, thresholds, column, y_label, title, percentage
 
         fig.add_trace(go.Scatter(x=thresholds, y=values, mode="lines+markers", name=checkin_type, 
                                  customdata=np.array(ratios).reshape(-1, 1),
-                                 hovertemplate='Seuil: %{x}<br>Valeur: %{y:.2f}<br>Pourcentage par rapport au Total: %{customdata[0]:.2f}'))
+                                 hovertemplate="Seuil: %{x}<br>Valeur: %{y:.2f}<br>Pourcentage par rapport au Total: %{customdata[0]:.2f}"))
 
     # Ligne verticale
     fig.add_vline(x=selected_threshold, line_dash="dash", line_color="red")

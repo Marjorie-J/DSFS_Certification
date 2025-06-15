@@ -19,7 +19,7 @@ en_retard = (data_getaround["delay_at_checkout_in_minutes"] > 0).sum()
 en_avance = (data_getaround["delay_at_checkout_in_minutes"] < 0).sum()
 a_l_heure = (data_getaround["delay_at_checkout_in_minutes"] == 0).sum()
 
-labels = ['En avance', 'À l’heure', 'En retard']
+labels = ["En avance", "À l’heure", "En retard"]
 sizes = [en_avance, a_l_heure, en_retard]
 
 fig = px.pie(values=sizes, names=labels, color_discrete_sequence=px.colors.qualitative.Pastel)

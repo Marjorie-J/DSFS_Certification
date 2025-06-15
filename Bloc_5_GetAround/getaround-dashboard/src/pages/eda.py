@@ -36,14 +36,14 @@ df_counts.columns = ["checkin_type", "count"]
 
 fig = px.bar(df_counts, x="checkin_type", y="count", 
              color="checkin_type", title="Types de checkin", color_discrete_sequence=px.colors.qualitative.Pastel)
-fig.update_layout(xaxis_title=None, yaxis_title=None, yaxis=dict(tickformat='d'), showlegend=False, title_x=0.5)
+fig.update_layout(xaxis_title=None, yaxis_title=None, yaxis=dict(tickformat="d"), showlegend=False, title_x=0.5)
 st.plotly_chart(fig, use_container_width=True)
 
 
 # delay_at_checkout_in_minutes
 fig = px.histogram(data_getaround, x="delay_at_checkout_in_minutes", 
                    title="Répartition du délai de restitutuion d'un véhicule, en minutes.", color_discrete_sequence=px.colors.qualitative.Pastel)
-fig.update_layout(xaxis_title=None, yaxis_title=None, yaxis=dict(tickformat='d'))
+fig.update_layout(xaxis_title=None, yaxis_title=None, yaxis=dict(tickformat="d"))
 st.plotly_chart(fig, use_container_width=True)
 
 st.markdown("Une valeur négative signifie que le conducteur a restitué le véhicule en avance.")
@@ -54,7 +54,7 @@ df_counts.columns = ["state", "count"]
 
 fig = px.bar(df_counts, x="state", y="count", 
              color="state", title=f"Etat des locations", color_discrete_sequence=px.colors.qualitative.Pastel)
-fig.update_layout(xaxis_title=None, yaxis_title=None, yaxis=dict(tickformat='d'), showlegend=False, title_x=0.5)
+fig.update_layout(xaxis_title=None, yaxis_title=None, yaxis=dict(tickformat="d"), showlegend=False, title_x=0.5)
 st.plotly_chart(fig, use_container_width=True)
 
 
@@ -62,7 +62,7 @@ st.plotly_chart(fig, use_container_width=True)
 fig = px.histogram(data_getaround, x="time_delta_with_previous_rental_in_minutes", 
                    title="Répartition de l'écart entre le début d'une location et la fin de la précédente, en minutes.", nbins=35, 
                    color_discrete_sequence=px.colors.qualitative.Pastel)
-fig.update_layout(xaxis_title=None, yaxis_title=None, yaxis=dict(tickformat='d'))
+fig.update_layout(xaxis_title=None, yaxis_title=None, yaxis=dict(tickformat="d"))
 st.plotly_chart(fig, use_container_width=True)
 
 
@@ -72,10 +72,10 @@ st.divider()
 ## Locations précédentes
 st.subheader("Locations pour lesquelles nous avons les informations des locations précédentes")
 
-has_prev = data_getaround['previous_ended_rental_id'].notna()
+has_prev = data_getaround["previous_ended_rental_id"].notna()
 values = [has_prev.sum(), len(data_getaround) - has_prev.sum()]
 
-fig = px.pie(names=['Avec location précédente', 'Sans location précédente'], values=values, color_discrete_sequence=px.colors.qualitative.Pastel)
+fig = px.pie(names=["Avec location précédente", "Sans location précédente"], values=values, color_discrete_sequence=px.colors.qualitative.Pastel)
 st.plotly_chart(fig)
 
 percent_prec = has_prev.sum() * 100 / data_getaround.shape[0]
