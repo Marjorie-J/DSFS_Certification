@@ -1,12 +1,10 @@
 import plotly.graph_objects as go
 import streamlit as st
 
-st.set_page_config(page_title="GetAround Web Dashboard 🚗", layout="wide")
+from utils.common import load_data, plot_checkin_thresholds
 
-from utils.common import data_getaround, plot_checkin_thresholds
 
 st.markdown("# Recherche d'un seuil : délai minimum entre 2 locations🔬")
-
 
 st.markdown("""Chaque location rendue en retard met potentiellement en danger la location suivante.
 
@@ -16,6 +14,9 @@ Une fonctionnalité imposant un délai minimum entre deux réservations peut abs
 
 - ⛔ Si le retard est supérieur au délai minimum, la location suivante serait encore à risque. """)
 
+
+# Load data
+data_getaround = load_data()
 
 st.markdown("#### Combien de cas problématiques seraient résolus en fonction du seuil choisi et du type de location ?")
 
@@ -70,7 +71,7 @@ plot_checkin_thresholds(
 
 
 
-st.markdown("""On constate que type checkin Mobile est beaucoup plus concerné par les retards que Connect.
+st.markdown("""On constate que type checkin `mobile` est beaucoup plus concerné par les retards que Connect.
         
-Un seuil mis en place sur ce type de checkin permettrai d'absorber près de 80% des retards. """)
+Un seuil mis en place sur ce type de checkin permettrai d'absorber une part importante des retards :` 82%` . """)
 

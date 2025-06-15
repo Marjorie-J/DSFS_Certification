@@ -1,9 +1,8 @@
 import plotly.express as px
 import streamlit as st
 
-st.set_page_config(page_title="GetAround Web Dashboard 🚗", layout="wide")
+from utils.common import load_data
 
-from utils.common import data_getaround
 
 st.markdown("# EDA 📈")
 
@@ -14,10 +13,13 @@ Dans cette section, nous explorons les données de la plateforme GetAround, un s
 
 Vous y trouverez des visualisations et des statistiques comme notamment :
             
-La répartition des informations qui ont servi à l'analyse ou l'étude des retards
+La répartition des informations qui ont servi à l'analyse ou l'étude des retards.
 
 Ces analyses permettent de mieux comprendre les données afin d'améliorer les décisions métier.
 """)
+
+# Load data
+data_getaround = load_data()
 
 st.divider()
 

@@ -2,12 +2,14 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 
-st.set_page_config(page_title="GetAround Web Dashboard 🚗", layout="wide")
+from utils.common import load_data
 
-from utils.common import data_getaround
 
 st.markdown("# Enchainemenet des locations ⏭️")
 
+
+# Load data
+data_getaround = load_data()
 
 ## Cas problématiques
 st.subheader("Analyse des cas problématiques : La voiture de la location précédente a été rendue après le début de la location suivante.")

@@ -1,16 +1,7 @@
-import pandas as pd
-import plotly.express as px
-import plotly.graph_objects as go
 import streamlit as st
 
-### Config
-st.set_page_config(
-    page_title="GetAround Analysis",
-    layout="wide"
-)
 
 st.title("GetAround Web Dashboard 🚗")
-
 
 st.markdown("""
     Bienvenue sur le Web Dashboard GetAround !

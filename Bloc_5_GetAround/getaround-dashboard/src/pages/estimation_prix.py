@@ -1,12 +1,8 @@
 import requests
 import streamlit as st
 
-st.set_page_config(page_title="GetAround Web Dashboard 🚗", layout="wide")
-
-from utils.common import data_getaround, plot_checkin_thresholds
 
 st.markdown("# Estimation du prix de location 💸")
-
 
 st.markdown("""
     ### Estimation du prix de location

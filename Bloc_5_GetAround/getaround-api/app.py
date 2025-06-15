@@ -190,7 +190,7 @@ async def predict(predictionFeatures: PredictionFeatures):
     # Read data
     df = pd.DataFrame([predictionFeatures.dict()])
     # Log model from mlflow
-    logged_model = "runs:/21ce144d259c49a6a7a7e28be3fccecb/getaround_pricing_optimization"
+    logged_model = "runs:/18ca3733bbce4e709c7894c5fc747617/getaround_pricing_optimization"
 
     # Load model as a PyFuncModel.
     loaded_model = mlflow.pyfunc.load_model(logged_model)
@@ -213,7 +213,7 @@ async def batch_predict(file: UploadFile = File(...)):
     df = pd.read_csv(file.file)
 
     # Log model from mlflow
-    logged_model = "runs:/21ce144d259c49a6a7a7e28be3fccecb/getaround_pricing_optimization"
+    logged_model = "runs:/18ca3733bbce4e709c7894c5fc747617/getaround_pricing_optimization"
 
     # Load model as a PyFuncModel.
     loaded_model = mlflow.pyfunc.load_model(logged_model)

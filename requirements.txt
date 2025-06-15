@@ -2,6 +2,7 @@ boto3
 ipykernel
 nbformat
 numpy
+openpyxl
 pandas
 plotly
 psycopg2-binary
@@ -9,3 +10,4 @@ scikit-learn
 scrapy==2.12.0
 sqlalchemy==2.0.0
 statsmodels
+streamlit==1.37.1

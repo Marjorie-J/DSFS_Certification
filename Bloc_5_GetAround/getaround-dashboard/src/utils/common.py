@@ -1,3 +1,4 @@
+import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
@@ -37,12 +38,26 @@ def load_data():
 
     return data
 
-data_getaround = load_data()
-
 
 ## VISUALISATION DES SEUILS
 def plot_checkin_thresholds(data, thresholds, column, y_label, title, percentage=False):
     fig = go.Figure()
+
+    # Sélection du seuil via un slider
+    selected_threshold = st.slider("Choisir un seuil (minutes)", 
+                                   min_value=int(thresholds[0]), 
+                                   max_value=int(thresholds[-1]), step=1,
+                                   key=f"slider_{title}")
+
+    # Courbe totale
+    total_values = []
+    for threshold in thresholds:
+        total_count = ((data[column] <= threshold) & (data[column] >= 0)).sum()
+        if percentage:
+            total_count = total_count / data.shape[0] * 100
+        total_values.append(total_count)
+
+    fig.add_trace(go.Scatter(x=thresholds, y=total_values, mode="lines+markers", name="Total", hovertemplate='Seuil: %{x}<br>Valeur: %{y:.2f}'))
 
     # Courbes par type de checkin
     for checkin_type in data["checkin_type"].unique():
@@ -57,17 +72,14 @@ def plot_checkin_thresholds(data, thresholds, column, y_label, title, percentage
                 count = count / data.shape[0] * 100
             values.append(count)
 
-        fig.add_trace(go.Scatter(x=thresholds, y=values, mode="lines+markers", name=checkin_type))
+        ratios = [x*100/y for x, y in zip(values, total_values)]
 
-    # Courbe totale
-    total_values = []
-    for threshold in thresholds:
-        total_count = ((data[column] <= threshold) & (data[column] >= 0)).sum()
-        if percentage:
-            total_count = total_count / data.shape[0] * 100
-        total_values.append(total_count)
+        fig.add_trace(go.Scatter(x=thresholds, y=values, mode="lines+markers", name=checkin_type, 
+                                 customdata=np.array(ratios).reshape(-1, 1),
+                                 hovertemplate='Seuil: %{x}<br>Valeur: %{y:.2f}<br>Pourcentage par rapport au Total: %{customdata[0]:.2f}'))
 
-    fig.add_trace(go.Scatter(x=thresholds, y=total_values, mode="lines+markers", name="Total"))
+    # Ligne verticale
+    fig.add_vline(x=selected_threshold, line_dash="dash", line_color="red")
 
     # Mise en page
     fig.update_layout(title=title, xaxis_title="Seuil (minutes)", yaxis_title=y_label)
