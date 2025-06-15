@@ -47,23 +47,23 @@ if __name__ == "__main__":
 
 
         # Preprocessing 
-        numerical_columns = x_train.select_dtypes(include=['int', 'float']).columns
-        categorical_columns = x_train.select_dtypes(include=['bool', 'object']).columns
+        numerical_columns = x_train.select_dtypes(include=["int", "float"]).columns
+        categorical_columns = x_train.select_dtypes(include=["bool", "object"]).columns
         
         numeric_transformer = Pipeline(steps=[
-            ('imputer', SimpleImputer(strategy='mean')),
-            ('scaler', StandardScaler())
+            ("imputer", SimpleImputer(strategy="mean")),
+            ("scaler", StandardScaler())
         ])
 
         categorical_transformer = Pipeline(
             steps=[
-            ('encoder', OneHotEncoder(drop='first', handle_unknown='ignore'))
+            ("encoder", OneHotEncoder(drop="first", handle_unknown="ignore"))
             ])
 
         preprocessor = ColumnTransformer(
             transformers=[
-                ('num', numeric_transformer, numerical_columns),
-                ('cat', categorical_transformer, categorical_columns)
+                ("num", numeric_transformer, numerical_columns),
+                ("cat", categorical_transformer, categorical_columns)
             ])
 
         x_train = preprocessor.fit_transform(x_train)

@@ -52,13 +52,13 @@ if __name__ == "__main__":
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
     # Preprocessing
-    categorical_features = X_train.select_dtypes(include=['bool', 'object']).columns
+    categorical_features = X_train.select_dtypes(include=["bool", "object"]).columns
 
     categorical_transformer = OneHotEncoder(
         drop="first", handle_unknown="error", sparse_output=False
     )
 
-    numerical_features = X_train.select_dtypes(include=['int', 'float']).columns
+    numerical_features = X_train.select_dtypes(include=["int", "float"]).columns
     
     numerical_transformer = StandardScaler()
 
