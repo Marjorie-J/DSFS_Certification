@@ -21,7 +21,7 @@ pages = [
 ]
 
 filter_hentai_on = st.sidebar.toggle("Filter out Hentai", value=True)
-st.session_state['hentai_filter_on'] = filter_hentai_on
+st.session_state["hentai_filter_on"] = filter_hentai_on
 
 pg = st.navigation(pages)
 pg.run()

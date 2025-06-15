@@ -15,7 +15,7 @@ with st.form("anime_input_form"):
 
     if submitted:
         try:
-            recommended_animes = search_recommended_animes_from_llm(input_anime_description, st.session_state['hentai_filter_on'])
+            recommended_animes = search_recommended_animes_from_llm(input_anime_description, st.session_state["hentai_filter_on"])
 
             recommended_animes_uid = recommended_animes["uid"].tolist()
             

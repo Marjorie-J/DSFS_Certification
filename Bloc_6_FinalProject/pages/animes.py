@@ -1,8 +1,6 @@
 import streamlit as st
 
-from utils.common import load_animes, load_anime, load_synopsis_embedding, search_closest_by_uid, write_col, write_col_with_label, display_img, display_synopsis, load_hentai_uid
-
-from utils.common import load_animes, load_anime, load_synopsis_embedding, search_closest_by_uid, write_col, write_col_with_label, display_img, display_synopsis, display_review
+from utils.common import load_animes, load_anime, load_synopsis_embedding, search_closest_by_uid, write_col, write_col_with_label, display_img, display_synopsis, load_hentai_uid, display_review
 
 st.markdown("## 🎥 Anime Search & Similar Recommendations")
 
@@ -17,8 +15,8 @@ df_emb = load_synopsis_embedding()
 df_hentai_uid = load_hentai_uid()
 
 # Create a dictionnary {title to show : id}
-if st.session_state['hentai_filter_on'] :
-    df_animes =  df_animes[~df_animes['uid'].isin(df_hentai_uid)]
+if st.session_state["hentai_filter_on"] :
+    df_animes =  df_animes[~df_animes["uid"].isin(df_hentai_uid)]
 
 animes_dict = {row["title"]: row["uid"] for _, row in df_animes.iterrows()}
 
@@ -56,9 +54,9 @@ if selected_anime_uid != None :
             else:
                 closest_anime_synopsis = search_closest_by_uid(selected_anime["uid"], df_emb)
                 
-                favorites_anime = closest_anime_synopsis['uid'].tolist()
+                favorites_anime = closest_anime_synopsis["uid"].tolist()
 
-                if st.session_state['hentai_filter_on'] :
+                if st.session_state["hentai_filter_on"] :
                     favorites_anime =  [value for value in favorites_anime if value not in df_hentai_uid.tolist()]
 
                 if favorites_anime:

@@ -1,16 +1,16 @@
+import ast
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_mistralai import ChatMistralAI
 from langchain.output_parsers import PydanticOutputParser
-from pydantic import BaseModel
-from typing import Optional
-
-import re
-import streamlit as st
+import os
 import pandas as pd
-import ast
+from pydantic import BaseModel
+import re
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
-import os
+import streamlit as st
+from typing import Optional
+
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # remonte à la racine du projet
 
@@ -77,16 +77,16 @@ def closest_similarity(target, df, col_category=None, category=None):
         if col_category:
                 mask = df[col_category].apply(lambda lst: category in lst)
                 df = df[~mask]
-        similarities = cosine_similarity([target], list(df['synopsis_embedding']))[0]
-        similarity_df = pd.DataFrame({'uid': df['uid'], 'similarity': similarities})
-        similarity_df =  similarity_df.sort_values(by='similarity', ascending=False)
+        similarities = cosine_similarity([target], list(df["synopsis_embedding"]))[0]
+        similarity_df = pd.DataFrame({"uid": df["uid"], "similarity": similarities})
+        similarity_df =  similarity_df.sort_values(by="similarity", ascending=False)
 
         return similarity_df
 
 def search_closest_by_uid(given_uid, df):     
-        given_embedding = df.loc[df['uid'] == given_uid, 'synopsis_embedding'].values[0]
+        given_embedding = df.loc[df["uid"] == given_uid, "synopsis_embedding"].values[0]
         similarity_df = closest_similarity(given_embedding, df)
-        closest = similarity_df[similarity_df['uid'] != given_uid].sort_values(by='similarity', ascending=False).head()
+        closest = similarity_df[similarity_df["uid"] != given_uid].sort_values(by="similarity", ascending=False).head()
         return closest
 ##
 
@@ -225,7 +225,7 @@ def search_recommended_animes_from_llm(input_anime_description, filter_hentai_on
 
         # Find all animes that are the closest to the user's preferences
         input_positive_embedding = model.encode(input_positive_clean)
-        result_df_positive = pd.DataFrame(closest_similarity(input_positive_embedding, df_emb_with_genre, col_category, category), columns=['uid','similarity']).head(20)
+        result_df_positive = pd.DataFrame(closest_similarity(input_positive_embedding, df_emb_with_genre, col_category, category), columns=["uid","similarity"]).head(20)
 
 
          # User don't want ...
@@ -233,7 +233,7 @@ def search_recommended_animes_from_llm(input_anime_description, filter_hentai_on
 
             # Find all animes that are the closest to what the user wants to avoid
             input_negative_embedding = model.encode(input_negative_clean)
-            result_df_negative = pd.DataFrame(closest_similarity(input_negative_embedding, df_emb_with_genre, col_category, category), columns=['uid','similarity']).head(20) 
+            result_df_negative = pd.DataFrame(closest_similarity(input_negative_embedding, df_emb_with_genre, col_category, category), columns=["uid","similarity"]).head(20) 
            
         # User don't want a Title ...
         if input_title_clean:
@@ -242,8 +242,8 @@ def search_recommended_animes_from_llm(input_anime_description, filter_hentai_on
             result_df_negative = pd.concat([result_df_negative, result_df_title_negative], ignore_index=True)   
 
         # We exclude the anime the user doesn't want from those they do want
-        result_df_final = result_df_positive[~result_df_positive['uid'].isin(result_df_negative['uid'])]
-        result_df_final = result_df_final.sort_values(by='similarity', ascending=False)
+        result_df_final = result_df_positive[~result_df_positive["uid"].isin(result_df_negative["uid"])]
+        result_df_final = result_df_final.sort_values(by="similarity", ascending=False)
 
         return result_df_final.head()
     
@@ -276,10 +276,10 @@ def generate_diffusion_list(target):
     similarity_df = closest_similarity(target, df_emb)
 
     # filter by similarity
-    closest = similarity_df[similarity_df['similarity'] >= 0.5].sort_values(by='similarity', ascending=False)
+    closest = similarity_df[similarity_df["similarity"] >= 0.5].sort_values(by="similarity", ascending=False)
 
-    df_merged = df_favorites.merge(closest, left_on='favorites_anime', right_on='uid', how='inner')
-    grouped_df = df_merged.groupby('profile').agg({'uid': list}).reset_index()
+    df_merged = df_favorites.merge(closest, left_on="favorites_anime", right_on="uid", how="inner")
+    grouped_df = df_merged.groupby("profile").agg({"uid": list}).reset_index()
 
     # sorted by uid lenght
     sorted_profile = grouped_df.sort_values(by="uid", key=lambda x: x.str.len(), ascending=False)
@@ -297,8 +297,8 @@ def display_synopsis(anime):
 
 def extract_animes_from_uid(df_animes, df_uid):
     
-    uids = {uid for sub in df_uid['uid'] for uid in sub}
-    selected_animes = df_animes[df_animes['uid'].isin(uids)][['title','uid']].reset_index(drop=True)
+    uids = {uid for sub in df_uid["uid"] for uid in sub}
+    selected_animes = df_animes[df_animes["uid"].isin(uids)][["title","uid"]].reset_index(drop=True)
        
     return selected_animes
 
@@ -370,14 +370,14 @@ def generate_review_summary(given_anime_uid):
     parser = PydanticOutputParser(pydantic_object=OutputSchema_review)
     
     df_reviews=load_reviews()
-    input=df_reviews[df_reviews['anime_uid']==given_anime_uid]['text'].apply(clean_text)
+    input=df_reviews[df_reviews["anime_uid"]==given_anime_uid]["text"].apply(clean_text)
     if len(input) == 0:
         output = ["This anime has no review yet! You can watch it and review it yourself!"]
     else:        
         response = model_llm_reviews.invoke({"text": input, "format_instructions": parser.get_format_instructions()})
         output_positive = parser.parse(response.content).positive
         output_negative = parser.parse(response.content).negative
-        ai_notice = f'Response generated by Mistral AI, based on {len(input)} reviews'
+        ai_notice = f"Response generated by Mistral AI, based on {len(input)} reviews"
         output = [output_positive, output_negative, ai_notice]
     return output
 

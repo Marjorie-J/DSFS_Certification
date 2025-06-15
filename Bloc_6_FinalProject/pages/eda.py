@@ -40,15 +40,15 @@ st.subheader("1) Anime-based analysis")
 
 st.markdown("First, let's get the most represented genres")
 
-df_animes['genre'] = df_animes['genre'].apply(ast.literal_eval)
-df_exploded = df_animes.explode('genre')
-genre_count = pd.DataFrame(df_exploded['genre'].value_counts().reset_index(name='count').head(10))
+df_animes["genre"] = df_animes["genre"].apply(ast.literal_eval)
+df_exploded = df_animes.explode("genre")
+genre_count = pd.DataFrame(df_exploded["genre"].value_counts().reset_index(name="count").head(10))
 
 count = px.bar(genre_count,
-               x='genre',
-               y='count', 
-               labels={'genre': 'Genre', 'count': 'Count'},
-               text='count',
+               x="genre",
+               y="count", 
+               labels={"genre": "Genre", "count": "Count"},
+               text="count",
                title="10 most represented genres",
                template="plotly_dark", 
                color_discrete_sequence=px.colors.qualitative.Dark2)
@@ -57,14 +57,14 @@ st.plotly_chart(count, use_container_width=True)
 
 st.markdown("Let's find out the average score of the 10 best ranked animes")
 
-rank = df_animes.sort_values(by='ranked').head(10)
+rank = df_animes.sort_values(by="ranked").head(10)
 
 top_rank = px.bar(rank,
-                        x='title',
-                        y='score',
-                        labels={'title': 'Title', 'score': 'Score'},
-                        text='ranked',
-                        title='Top ranked animes and their average score',
+                        x="title",
+                        y="score",
+                        labels={"title": "Title", "score": "Score"},
+                        text="ranked",
+                        title="Top ranked animes and their average score",
                         template="plotly_dark", 
                         color_discrete_sequence=px.colors.qualitative.Pastel)
 top_rank.update_yaxes(range=[8.9,9.4])
@@ -73,16 +73,16 @@ st.plotly_chart(top_rank, use_container_width=True)
 
 st.markdown("Let's now find out the most popular animes based on their viewership")
 
-pop = df_animes.sort_values(by='popularity')
+pop = df_animes.sort_values(by="popularity")
 pop.head(10)
 pop10 = pop.head(10)
 
 top_pop = px.bar(pop10,
-                        x='title',
-                        y='members',
-                        labels={'title': '', 'members': 'Popularity'},
-                        text='members',
-                        title='Most popular animes and their viewership',
+                        x="title",
+                        y="members",
+                        labels={"title": "", "members": "Popularity"},
+                        text="members",
+                        title="Most popular animes and their viewership",
                         template="plotly_dark", 
                         color_discrete_sequence=px.colors.qualitative.Vivid)
 top_pop.update_yaxes(range=[1000000,2000000])
@@ -100,12 +100,12 @@ st.subheader("2) User-based analysis")
 
 
 age_graph = px.histogram(df_profiles,
-                         x='age',
-                         color='gender',
-                         labels={'count': 'Count', 'age': 'Age'},
-                         title='Age and gender distribution that users declared for themselves (sample of 22k)',
+                         x="age",
+                         color="gender",
+                         labels={"count": "Count", "age": "Age"},
+                         title="Age and gender distribution that users declared for themselves (sample of 22k)",
                          color_discrete_sequence=px.colors.qualitative.Alphabet_r,
-                         template='plotly_dark')
+                         template="plotly_dark")
 
 st.plotly_chart(age_graph, use_container_width=True)
 
@@ -123,30 +123,30 @@ However, given the population watching anime tends to be fairly young, it is saf
 st.subheader("3) Review-based analysis")
 
 
-top10_anime_uid = rank['uid'].tolist()
-reviews_for_top10 = df_reviews[df_reviews['anime_uid'].isin(top10_anime_uid)]
-reviews_for_top10 = pd.merge(reviews_for_top10, df_animes, left_on='anime_uid', right_on='uid')
+top10_anime_uid = rank["uid"].tolist()
+reviews_for_top10 = df_reviews[df_reviews["anime_uid"].isin(top10_anime_uid)]
+reviews_for_top10 = pd.merge(reviews_for_top10, df_animes, left_on="anime_uid", right_on="uid")
 
-reviews_for_top10 = reviews_for_top10[reviews_for_top10['ranked'] <= 10]
+reviews_for_top10 = reviews_for_top10[reviews_for_top10["ranked"] <= 10]
 
-columns_to_keep = ['uid_x', 'profile',	'anime_uid', 'text','score_x', 'scores', 'link_x', 'title', 'ranked', 'score_y', 'popularity', 'members']
+columns_to_keep = ["uid_x", "profile",	"anime_uid", "text","score_x", "scores", "link_x", "title", "ranked", "score_y", "popularity", "members"]
 reviews_for_top10 = reviews_for_top10[columns_to_keep]
 
-df_revtop = reviews_for_top10['title'].value_counts().reset_index()
-df_revtop.columns = ['title', 'count']
+df_revtop = reviews_for_top10["title"].value_counts().reset_index()
+df_revtop.columns = ["title", "count"]
 
-reviews_top = df_revtop.merge(reviews_for_top10[['title', 'ranked']], on='title', how='left').drop_duplicates()
-reviews_top = reviews_top.sort_values(by='count', ascending=False)
+reviews_top = df_revtop.merge(reviews_for_top10[["title", "ranked"]], on="title", how="left").drop_duplicates()
+reviews_top = reviews_top.sort_values(by="count", ascending=False)
 
 reviews_top10 = px.bar(reviews_top,
-                        x='title',
-                        y='count',
-                       labels={'count': 'Amount of reviews', 'title': ''},
-                        title='Amount of reviews on the top 10 best ranked animes (excluding top 3 entry for which data is missing)',
-                        text='ranked',
+                        x="title",
+                        y="count",
+                       labels={"count": "Amount of reviews", "title": ""},
+                        title="Amount of reviews on the top 10 best ranked animes (excluding top 3 entry for which data is missing)",
+                        text="ranked",
                         height= 600,
                         color_discrete_sequence=px.colors.qualitative.Dark24_r,
-                        template='plotly_dark'
+                        template="plotly_dark"
                        )
 reviews_top10.update_traces(textangle=0, textposition="outside")                      
 st.plotly_chart(reviews_top10, use_container_width=True)
@@ -164,28 +164,28 @@ Beside, we have to take into account the release date of the titles. For example
 """)
 
 
-mostpop_anime_uid = pop10['uid'].tolist()
-reviews_for_mostpop = df_reviews[df_reviews['anime_uid'].isin(mostpop_anime_uid)]
-reviews_for_mostpop = pd.merge(reviews_for_mostpop, df_animes, left_on='anime_uid', right_on='uid')
+mostpop_anime_uid = pop10["uid"].tolist()
+reviews_for_mostpop = df_reviews[df_reviews["anime_uid"].isin(mostpop_anime_uid)]
+reviews_for_mostpop = pd.merge(reviews_for_mostpop, df_animes, left_on="anime_uid", right_on="uid")
 
-reviews_for_mostpop = reviews_for_mostpop[reviews_for_mostpop['popularity'] <= 10]
+reviews_for_mostpop = reviews_for_mostpop[reviews_for_mostpop["popularity"] <= 10]
 reviews_for_mostpop = reviews_for_mostpop[columns_to_keep]
 
-df_mostpop = reviews_for_mostpop['title'].value_counts().reset_index()
-df_mostpop.columns = ['title', 'count']
+df_mostpop = reviews_for_mostpop["title"].value_counts().reset_index()
+df_mostpop.columns = ["title", "count"]
 
-reviews_pop = df_mostpop.merge(reviews_for_mostpop[['title', 'popularity']], on='title', how='left').drop_duplicates()
-reviews_pop = reviews_pop.sort_values(by='count', ascending=False)
+reviews_pop = df_mostpop.merge(reviews_for_mostpop[["title", "popularity"]], on="title", how="left").drop_duplicates()
+reviews_pop = reviews_pop.sort_values(by="count", ascending=False)
 
 reviews_mostpop = px.bar(reviews_pop,
-                       x='title',
-                       y='count',
-                       labels={'count': 'Amount of reviews', 'title': ''},
-                        title='Amount of reviews on the most popular entries',
-                        text='popularity',
+                       x="title",
+                       y="count",
+                       labels={"count": "Amount of reviews", "title": ""},
+                        title="Amount of reviews on the most popular entries",
+                        text="popularity",
                         height= 600,
                         color_discrete_sequence=px.colors.qualitative.Bold,
-                        template='plotly_dark'
+                        template="plotly_dark"
                        )
 reviews_mostpop.update_traces(textangle=0, textposition="outside")
 st.plotly_chart(reviews_mostpop, use_container_width=True)

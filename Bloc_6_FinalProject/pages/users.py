@@ -33,7 +33,7 @@ if selected_user_profile != None :
     with st.expander("Favorite anims"):
         favorites_anime = ast.literal_eval(selected_profile["favorites_anime"]) # Update HERE to exclude Hentai
 
-        if st.session_state['hentai_filter_on'] :
+        if st.session_state["hentai_filter_on"] :
                     favorites_anime =  [value for value in favorites_anime if value not in df_hentai_uid.tolist()]
 
         if favorites_anime:
@@ -57,7 +57,7 @@ if selected_user_profile != None :
         else:
             recommendations = ast.literal_eval(selected_profile_favorite_recommendations["recommendations"])
 
-            if st.session_state['hentai_filter_on'] :
+            if st.session_state["hentai_filter_on"] :
                 recommendations = [value for value in recommendations if value not in df_hentai_uid.tolist()]
              
             recommendations = recommendations[:5]
@@ -80,7 +80,7 @@ if selected_user_profile != None :
         else:
             recommendations = ast.literal_eval(selected_profile_reviews_recommendations["recommendations"])
 
-            if st.session_state['hentai_filter_on'] :
+            if st.session_state["hentai_filter_on"] :
                 recommendations = [value for value in recommendations if value not in df_hentai_uid.tolist()]
 
             recommendations = recommendations[:5]    
