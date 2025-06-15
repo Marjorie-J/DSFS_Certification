@@ -97,7 +97,12 @@ Bloc 4 AT&T : Projet réalisé sur Google Colab / Lightning AI afin d'entraîner
 │   ├── getaround-train-model/
 │   └── README.md
 ├── Bloc_6_FinalProject/
-│   ├── ...
-│   └── README.md
+│   ├── datas/
+│   ├── notebook/
+│   ├── pages/
+│   ├── utils/
+│   ├── app.py
+│   ├── README.md
+│   └── run.sh
 ├── README.md
 └── requirements.txt
