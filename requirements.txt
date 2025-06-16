@@ -15,3 +15,5 @@ sentence_transformers
 sqlalchemy==2.0.0
 statsmodels
 streamlit==1.37.1
+tiktoken
+torchinfo
