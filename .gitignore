@@ -5,17 +5,17 @@
 
 /Bloc_1_Kayak/src/__pycache__
 
-/Bloc_2_Speed_Dating/DOC
-/Bloc_2_Speed_Dating/MODELISATION
-/Bloc_2_Speed_Dating/OLD
+/Bloc_2/Bloc_2_Speed_Dating/DOC
+/Bloc_2/Bloc_2_Speed_Dating/MODELISATION
+/Bloc_2/Bloc_2_Speed_Dating/OLD
 
-/Bloc_2_Steam/export.csv
-/Bloc_2_Steam/one_data.txt
-/Bloc_2_Steam/schema.txt
+/Bloc_2/Bloc_2_Steam/export.csv
+/Bloc_2/Bloc_2_Steam/one_data.txt
+/Bloc_2/Bloc_2_Steam/schema.txt
 
-/Bloc_3_Uber
+/Bloc_3/Bloc_3_Uber
 
-/Bloc_3_Walmart/Tests.xlsx
+/Bloc_3/Bloc_3_Walmart/Tests.xlsx
 
 /Bloc_5_GetAround/getaround-train-model/mlruns
 
