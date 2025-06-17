@@ -1,6 +1,16 @@
 # The North Face e-commerce
 
 
+## Getting Started
+
+### The North Face Recommender System
+
+* go inside streamlit
+* `bash run.sh`
+
+-----
+
+
 ## Company's Description 📇
 
 The North Face is an American outdoor recreation product company, founded in 1968 to supply climbers. The North Face produces clothing, footwear, and outdoor equipment. By the late 1990s customers had expanded beyond outdoor enthusiasts and in the 2000s it became a fashion style symbol.

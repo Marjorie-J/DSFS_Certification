@@ -1,0 +1,1 @@
+streamlit run The_North_Face_Recommender.py
