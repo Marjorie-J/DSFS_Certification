@@ -55,7 +55,7 @@ python -m spacy download en_core_web_sm
 
 Bloc 2 Steam : Projet réalisé sur Databricks avec PySpark
 
-Bloc 4 AT&T : Projet réalisé sur Google Colab / Lightning AI afin d'entraîner des modèles de deep learning
+Bloc 4 AT&T : Projet réalisé sur Google Colab afin d'entraîner des modèles de deep learning
 
 
 ## Structure du Repository
@@ -68,27 +68,34 @@ Bloc 4 AT&T : Projet réalisé sur Google Colab / Lightning AI afin d'entraîner
 │   ├── screenshots/
 │   ├── src/
 │   └── README.md
-├── Bloc_2_Speed_Dating/
-│   ├── datas/
-│   ├── src/
-│   └── README.md
-├── Bloc_2_Steam/
-│   ├── src/
-│   └── README.md
-├── Bloc_3_Conversion_Rate_Challenge/
-│   ├── datas/
-│   ├── src/
-│   └── README.md
-├── Bloc_3_The_North_Face/
-│   ├── datas/
-│   ├── src/
-│   └── README.md
-├── Bloc_3_Walmart/
-│   ├── datas/
-│   ├── src/
-│   └── README.md
+├── Bloc_2/
+│   ├── Bloc_2_Speed_Dating/
+│   |   ├── datas/
+│   |   ├── src/
+│   |   └── README.md
+|   └──  Bloc_2_Steam/
+│       ├── backup_notebooks_databricks/
+│       ├── databricks_links.txt
+│       └── README.md
+├── Bloc_3/
+│   ├── Bloc_3_Conversion_Rate_Challenge/
+│   |   ├── datas/
+│   |   ├── src/
+│   |   ├── utils/
+│   |   └── README.md
+│   ├── Bloc_3_The_North_Face/
+│   |   ├── datas/
+│   |   ├── src/
+│   |   ├── streamlit/
+│   |   ├── utils/
+│   |   └── README.md
+|   └──  Bloc_3_Walmart/
+│       ├── datas/
+│       ├── src/
+│       └── README.md
 ├── Bloc_4_AT&T/
 │   ├── datas/
+│   ├── models/
 │   ├── src/
 │   └── README.md
 ├── Bloc_5_GetAround/
@@ -96,14 +103,18 @@ Bloc 4 AT&T : Projet réalisé sur Google Colab / Lightning AI afin d'entraîner
 │   ├── getaround-dashboard/
 │   ├── getaround-mlflow/
 │   ├── getaround-train-model/
+│   ├── screenshots/
 │   └── README.md
 ├── Bloc_6_FinalProject/
 │   ├── datas/
 │   ├── notebook/
 │   ├── pages/
+│   ├── screenshots/
 │   ├── utils/
 │   ├── app.py
 │   ├── README.md
 │   └── run.sh
+├── .gitattributes
+├── .gitignore
 ├── README.md
 └── requirements.txt
