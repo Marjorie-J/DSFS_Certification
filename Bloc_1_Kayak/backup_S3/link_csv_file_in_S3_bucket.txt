@@ -1,0 +1,1 @@
+https://dsfs34-kayak-mj.s3.eu-west-3.amazonaws.com/final_cities_hotels_weather.csv
