@@ -1,8 +1,6 @@
 /.tmp.drivedownload
 /.tmp.driveupload
 
-**/presentation/
-
 /Bloc_1_Kayak/src/__pycache__
 
 /Bloc_3/Bloc_3_Uber
