@@ -63,9 +63,10 @@ Bloc 4 AT&T : Projet réalisé sur Google Colab afin d'entraîner des modèles d
 ```
 .
 ├── Bloc_1_Kayak/
+│   ├── backup_S3/
+│   ├── backup_sql_database/
 │   ├── datas/
 │   ├── maps/
-│   ├── screenshots/
 │   ├── src/
 │   └── README.md
 ├── Bloc_2/
@@ -74,8 +75,7 @@ Bloc 4 AT&T : Projet réalisé sur Google Colab afin d'entraîner des modèles d
 │   |   ├── src/
 │   |   └── README.md
 |   └──  Bloc_2_Steam/
-│       ├── backup_notebooks_databricks/
-│       ├── databricks_links.txt
+│       ├── backup_databricks/
 │       └── README.md
 ├── Bloc_3/
 │   ├── Bloc_3_Conversion_Rate_Challenge/
